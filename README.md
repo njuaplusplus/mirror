@@ -2,14 +2,13 @@
 
 This is the PyTorch implementation for NDSS 2022 paper "MIRROR: Model Inversion for Deep Learning Network with High Fidelity". For more inversion results, please refer to [mirror github page](https://model-inversion.github.io/mirror/).
 
-Note: we only uploaded the scripts and cache files for resnet50 model. Others will be updated soon.
+Note: we only uploaded the scripts and cache files for resnet50 and vgg16 model. Others will be updated soon.
 
 ## Environment
 
 ```
 conda env create -f environment.yml
 conda activate mirror
-
 ```
 
 ## Usage
@@ -48,6 +47,21 @@ Test the inversion.
 
 ```
 zsh scripts/run_vggface2_resnet50_ge_test.sh
+```
+
+## Build cache files
+
+We need to first generate styelgan's images if we haven't done it.
+
+```
+python my_sample_z_w_space.py
+```
+
+Use inception_resnetv1_vggface2 as an example. We first generate the outputs of the network on the stylegan's samples. Then we merge them into one file.
+
+```
+python my_generate_blackbox_attack_dataset.py --arch_name inception_resnetv1_vggface2 stylegan
+python my_merge_all_tensors.py blackbox_attack_data/stylegan/inception_resnetv1_vggface2/no_dropout --remove
 ```
 
 ## Reference

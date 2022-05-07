@@ -13,7 +13,7 @@ import net_sphere
 
 from my_utils import create_folder, Tee
 from my_mirror import mirror_attack
-from my_target_models import get_model
+from my_target_models import get_model, get_input_resolution
 
 
 random.seed(0)
@@ -40,13 +40,7 @@ def run(args):
 
     print(args)
 
-    args.image_resolution = 224
-    if args.arch_name.startswith('inception_resnetv1'):
-        args.image_resolution = 160
-    elif args.arch_name == 'sphere20a':
-        args.image_resolution = (112, 96)
-    elif args.arch_name == 'car_resnet34':
-        args.image_resolution = 400
+    args.image_resolution = get_input_resolution(args.arch_name)
 
     if args.arch_name == 'sphere20a':
         args.criterion = net_sphere.MyAngleLoss()

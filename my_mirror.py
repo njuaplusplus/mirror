@@ -171,7 +171,7 @@ def mirror_attack(args, target_model, verifier_model):
                 w_num_layers = 16
             use_discri = args.loss_discri_ce > 0.
             use_loss_latent = False
-            use_pre_generated_latents = args.pre_samples_dir and os.path.isdir(args.pre_samples_dir)
+            use_pre_generated_latents = args.use_cache or (args.pre_samples_dir and os.path.isdir(args.pre_samples_dir))
             use_w_mean = not use_pre_generated_latents and args.use_w_mean
             normalize_z_vector = False
             bound_latent_vector = False

@@ -23,7 +23,7 @@ import net_sphere
 import ccs19_model_inversion
 from my_utils import normalize, clip_quantile_bound, create_folder, Tee, add_conf_to_tensors, crop_and_resize
 from my_datasets import IndexedDataset, StyleGANSampleDataSet
-from my_target_models import get_model
+from my_target_models import get_model, get_input_resolution
 
 
 random.seed(0)
@@ -282,33 +282,8 @@ def main():
     else:
         raise AssertionError('wrong arch_name')
 
-    args.resolution = 224
-    # to_grayscale = False
-    if args.arch_name.startswith('inception_resnetv1'):
-        args.resolution = 160
-    elif args.arch_name == 'sphere20a':
-        args.resolution = (112, 96)
-    elif args.arch_name.startswith('ccs19ami'):
-        args.resolution = 64
-        if 'rgb' not in args.arch_name:
-            # to_grayscale = True
-            pass
-    elif args.arch_name in ['azure', 'clarifai', ]:
-        args.resolution = 256
-
-    args.test_resolution = 224
-    # to_grayscale = False
-    if args.test_arch_name.startswith('inception_resnetv1'):
-        args.test_resolution = 160
-    elif args.test_arch_name == 'sphere20a':
-        args.test_resolution = (112, 96)
-    elif args.test_arch_name.startswith('ccs19ami'):
-        args.test_resolution = 64
-        if 'rgb' not in args.test_arch_name:
-            # to_grayscale = True
-            pass
-    elif args.test_arch_name in ['azure', 'clarifai', ]:
-        args.test_resolution = 256
+    args.resolution = get_input_resolution(args.arch_name)
+    args.test_resolution = get_input_resolution(args.test_arch_name)
 
     use_w_space = True
     repeat_w = True  # if False, opt w+ space

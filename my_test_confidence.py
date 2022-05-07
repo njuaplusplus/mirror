@@ -72,7 +72,8 @@ def test_final_result(arch_name=None, dirs=None, external_args=None):
         sphere20_theta_net.load_state_dict(torch.load('./sphere20a_20171020.pth'))
         sphere20_theta_net.to(device)
 
-    net = get_model(arch_name, device, use_dropout=external_args.use_dropout)
+    # net = get_model(arch_name, device, use_dropout=external_args.use_dropout)
+    net = get_model(arch_name, device)  # we test the results on the original network
 
     try:
         label_logits_dict = torch.load(os.path.join('./centroid_data', arch_name, 'test/centroid_logits.pt'))

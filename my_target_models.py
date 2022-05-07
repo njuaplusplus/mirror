@@ -42,3 +42,23 @@ def get_model(arch_name, device, use_dropout=False):
         raise AssertionError('wrong arch_name')
     net.eval()
     return net
+
+
+def get_input_resolution(arch_name):
+    resolution = 224
+    # to_grayscale = False
+    if arch_name.startswith('inception_resnetv1'):
+        resolution = 160
+    elif arch_name == 'sphere20a':
+        resolution = (112, 96)
+    elif arch_name.startswith('ccs19ami'):
+        resolution = 64
+        if 'rgb' not in arch_name:
+            # to_grayscale = True
+            pass
+    elif arch_name in ['azure', 'clarifai', ]:
+        resolution = 256
+    elif arch_name == 'car_resnet34':
+        resolution = 400
+
+    return resolution
