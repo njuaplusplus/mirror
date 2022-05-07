@@ -12,7 +12,7 @@ import torchvision.models as models
 import net_sphere
 
 from my_utils import create_folder, Tee
-from my_mirror import mirror_attack
+from my_whitebox_mirror_helper import mirror_attack
 from my_target_models import get_model, get_input_resolution
 
 
