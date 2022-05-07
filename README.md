@@ -24,14 +24,14 @@ python my_download_cache.py
 Conduct the inversion.
 
 ```
-zsh scripts/run_vggface2_resnet50.sh
+zsh scripts/run_vggface2_resnet50_whitebox.sh
 
 ```
 
 Test the inversion.
 
 ```
-zsh scripts/run_vggface2_resnet50_test.sh
+zsh scripts/run_vggface2_resnet50_whitebox_test.sh
 ```
 
 ### 3. Black-box invert ResNet50
@@ -39,14 +39,14 @@ zsh scripts/run_vggface2_resnet50_test.sh
 Conduct the inversion.
 
 ```
-zsh scripts/run_vggface2_resnet50_ge.sh
+zsh scripts/run_vggface2_resnet50_blackbox.sh
 
 ```
 
 Test the inversion.
 
 ```
-zsh scripts/run_vggface2_resnet50_ge_test.sh
+zsh scripts/run_vggface2_resnet50_blackbox_test.sh
 ```
 
 ## Build cache files
