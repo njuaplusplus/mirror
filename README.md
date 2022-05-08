@@ -64,7 +64,19 @@ python my_generate_blackbox_attack_dataset.py --arch_name inception_resnetv1_vgg
 python my_merge_all_tensors.py blackbox_attack_data/stylegan/inception_resnetv1_vggface2/no_dropout --remove
 ```
 
-## Reference
+## Acknowledgement
+
+The StyleGAN models are based on [genforce/genforce](https://github.com/genforce/genforce).
+
+VGG16/VGG16BN/Resnet50 models are from [their official websites](https://www.robots.ox.ac.uk/~albanie/pytorch-models.html).
+
+InceptionResnetV1 is from [timesler/facenet-pytorch](https://github.com/timesler/facenet-pytorch).
+
+SphereFace is from [clcarwin/sphereface_pytorch](https://github.com/clcarwin/sphereface_pytorch).
+
+
+## BibTex
+Please cite our work as follows for any purpose of usage.
 
 ```
 @inproceedings{An.Mirror.NDSS.2022,
