@@ -3,7 +3,6 @@
 import os
 import subprocess
 
-from my_utils import create_folder
 
 ALL_CACHE = {
     # conf_mask.pt
@@ -22,6 +21,13 @@ ALL_CACHE = {
 
 
 def download(filename, url):
+
+    def create_folder(folder):
+        if os.path.exists(folder):
+            assert os.path.isdir(folder), 'it exists but is not a folder'
+        else:
+            os.makedirs(folder)
+
     if not os.path.exists(filename):
         print('Downloading', filename)
         dirname = os.path.dirname(filename)
