@@ -6,6 +6,8 @@ import subprocess
 from my_utils import create_folder
 
 ALL_CACHE = {
+    # conf_mask.pt
+    'conf_mask.pt': 'https://purdue0-my.sharepoint.com/:u:/g/personal/an93_purdue_edu/EfGCarPZZ-BGmE4RnZpVze4BVogJVdI3K46JDJzJsqcU5g?e=evkn75&download=1',
     'stylegan_sample_z_stylegan_celeba_partial256_0.7_8_all_ws.pt': 'https://purdue0-my.sharepoint.com/:u:/g/personal/an93_purdue_edu/Eee2Fvs7269DoZ8bRVKbBjEBY6bi0z02eLc6ApOiTc-wwA?e=Bz7Zzy&download=1',
     # resnet50 on vggface2
     'resnet50_scratch_dag.pth': 'https://purdue0-my.sharepoint.com/:u:/g/personal/an93_purdue_edu/EZOXU_L8CQdHvWdWnRfV7F4BCE-JGamMjKYwBWuPk5pyVQ?e=Hmzguu&download=1',
