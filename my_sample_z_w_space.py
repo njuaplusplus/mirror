@@ -100,6 +100,19 @@ def sample():
         img_gen = F.resize(img_gen, (RESOLUTION, RESOLUTION))
         save_image(img_gen, f'{filename}.png', nrow=10)
 
+    # collect all_ws.pt file
+    all_ws = []
+    all_latent_files = sorted(glob.glob(f'./{dirname}/sample_*_latent.pt*'))
+    for i in tqdm(range(0, len(all_latent_files), batch_size)):
+        latent_files = all_latent_files[i:i+batch_size]
+        latent_in = [torch.load(f) for f in latent_files]
+        latent_in = torch.cat(latent_in, dim=0)
+        w = generator.G.mapping(latent_in.to(device))['w']
+        all_ws.append(w)
+
+    all_ws = torch.cat(all_ws, dim=0).cpu()
+    torch.save(all_ws, f'./{dirname}_all_ws.pt')
+
 
 if __name__ == '__main__':
     sample()
