@@ -186,7 +186,13 @@ def compute_conf(net, arch_name, resolution, targets, imgs):
         sphere20_theta_net = getattr(net_sphere, 'sphere20a')(use_theta=True)
         sphere20_theta_net.load_state_dict(torch.load('./sphere20a_20171020.pth'))
         sphere20_theta_net.to('cuda')
-    label_logits_dict = torch.load(os.path.join('./centroid_data', arch_name, 'test/centroid_logits.pt'))
+
+    try:
+        label_logits_dict = torch.load(os.path.join('./centroid_data', arch_name, 'test/centroid_logits.pt'))
+    except FileNotFoundError:
+        print('Note: centroid_logits.pt is not found')
+        label_logits_dict = None
+
     outputs = net(normalize(crop_and_resize(imgs, arch_name, resolution)*255., arch_name))
     if arch_name == 'sphere20a':
         outputs = outputs[0]
